@@ -7,7 +7,6 @@ import { useState } from "react";
 const initialClients = ClientAPI.all();
 
 function App() {
-
   const [clients, setClients] = useState(initialClients);
 
   const delCli = (id) => {
@@ -26,7 +25,7 @@ function App() {
   return (
     <div className="App">
       <Form handleSubmit={addClient} inClient={{name: "", surname: "", phone: ""}}/>
-      <Table clients={clients} delClient={delCli} />
+      <Table clients={clients} delClient={delCli}/>
     </div>
   );
 }
