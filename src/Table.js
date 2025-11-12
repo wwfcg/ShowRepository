@@ -1,19 +1,19 @@
 import { Table, TableContainer, Button, TableBody, TableRow, TableHead, Paper, TableCell } from "@mui/material";
 import React from "react";
 
-const ClientTable = ({ clients, delClient }) => {
+const ClientTable = ({ clients, delClient, editClient }) => {
 
   return (
     <div style={{ flex: '1' }}>
       <Paper 
-        elevation={3} 
+        elevation={1} 
         sx={{ 
           borderRadius: 2, 
           overflow: 'hidden',
         }}
       >
         <TableContainer>
-          <Table sx={{ minWidth: 650 }}>
+          <Table sx={{ minWidth: 300 }}>
             <TableHead>
               <TableRow sx={{ backgroundColor: 'primary.main' }}>
                 <TableCell sx={{ 

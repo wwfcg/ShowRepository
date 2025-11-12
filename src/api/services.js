@@ -33,10 +33,13 @@ const ClientAPI = {
         this.clients = [...this.clients, client];
         return client;
     },
-    update: function (client) {
-        this.get();
-        this.clients.shift(client);
-        return client;
+    update: function (id, updatedClient) {
+        const clientIndex = this.clients.findIndex(client => client.id === id);
+        if (clientIndex !== -1) {
+            this.clients[clientIndex] = { ...this.clients[clientIndex], ...updatedClient };
+            return this.clients[clientIndex];
+        }
+        return null;
     },
 };
 export default ClientAPI;

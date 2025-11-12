@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-const Form = ({ handleSubmit, inClient }) => {
+const Form = ({ handleSubmit, inClient, isEditing, onCancel }) => {
     const [client, setClient] = useState(inClient);
   
     const handleChange = (event) => {
@@ -14,6 +14,10 @@ const Form = ({ handleSubmit, inClient }) => {
       handleSubmit(client);
       setClient(inClient);
     };
+
+    React.useEffect(() => {
+      setClient(inClient);
+    }, [inClient]);
   
     return (
       <div style={{
@@ -35,7 +39,7 @@ const Form = ({ handleSubmit, inClient }) => {
           color: '#333',
           textAlign: 'center'
         }}>
-          Add new client
+          Добавить клиента
         </h2>
          <div style={{ marginBottom: '20px' }}>
       <label 
@@ -137,7 +141,7 @@ const Form = ({ handleSubmit, inClient }) => {
       style={{
         width: '100%',
         padding: '14px 20px',
-        backgroundColor: '#007bff',
+        backgroundColor: isEditing ? '#28a745' : '#007bff',
         color: 'white',
         border: 'none',
         borderRadius: '8px',
@@ -147,13 +151,37 @@ const Form = ({ handleSubmit, inClient }) => {
         transition: 'all 0.3s ease',
         boxShadow: '0 2px 5px rgba(0,123,255,0.3)'
       }}
-      onMouseOver={(e) => e.target.style.backgroundColor = '#0056b3'}
-      onMouseOut={(e) => e.target.style.backgroundColor = '#007bff'}
+      onMouseOver={(e) => e.target.style.backgroundColor = isEditing ? '#218838' : '#0056b3'}
+        onMouseOut={(e) => e.target.style.backgroundColor = isEditing ? '#28a745' : '#007bff'}
       onMouseDown={(e) => e.target.style.transform = 'scale(0.98)'}
       onMouseUp={(e) => e.target.style.transform = 'scale(1)'}
     >
-      Add Client
+      Добавить клиента
     </button>
+   {isEditing &&( 
+    <button 
+          type="button"
+          onClick={onCancel}
+          style={{
+            flex: 1,
+            padding: '14px 20px',
+            backgroundColor: '#6c757d',
+            color: 'white',
+            border: 'none',
+            borderRadius: '8px',
+            fontSize: '16px',
+            fontWeight: '600',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease'
+          }}
+          onMouseOver={(e) => e.target.style.backgroundColor = '#545b62'}
+          onMouseOut={(e) => e.target.style.backgroundColor = '#6c757d'}
+          onMouseDown={(e) => e.target.style.transform = 'scale(0.98)'}
+          onMouseUp={(e) => e.target.style.transform = 'scale(1)'}
+        >
+          Отмена
+        </button>
+   )}
       </form>
       </div>
     );
