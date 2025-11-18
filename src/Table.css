@@ -1,0 +1,88 @@
+.client-table-container {
+  flex: 1;
+}
+
+.client-table-paper {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для заголовка таблицы */
+.client-table-head-row {
+  background-color: #1976d2;
+}
+
+.client-table-head-row .MuiTableCell-head {
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  text-align: center;
+  border: none;
+}
+
+/* Стили для строк таблицы */
+.client-table-body-row {
+  transition: background-color 0.2s;
+  border: none;
+}
+
+.client-table-body-row:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.client-table-body-row:hover {
+  background-color: rgba(25, 118, 210, 0.08);
+}
+
+.client-table-body-row .MuiTableCell-body {
+  font-size: 0.95rem;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border: none;
+}
+
+.client-table-body-row .MuiTableCell-body:first-child {
+  font-weight: 500;
+}
+
+/* Стили для ячейки с действиями */
+.client-table-actions-cell {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: none;
+}
+
+/* Базовые стили для кнопок */
+.client-table-button {
+  margin: 4px;
+  border-radius: 8px;
+  text-transform: none;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding-left: 16px;
+  padding-right: 16px;
+  transition: all 0.2s;
+  border: none;
+}
+
+.client-table-button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Специфичные стили для кнопок */
+.delete-button {
+  text-align: center;
+  background-color: #1976d2;
+  font-size: 10px;
+}
+
+.delete-button:hover {
+  background-color: #b71c1c;
+}
