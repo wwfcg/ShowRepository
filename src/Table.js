@@ -1,9 +1,14 @@
 import { Table, TableContainer, Button, TableBody, TableRow, TableHead, Paper, TableCell } from "@mui/material";
 import React from "react";
+<<<<<<< HEAD
+=======
+import "./Table.css";
+>>>>>>> master
 
 const ClientTable = ({ clients, delClient, editClient }) => {
 
   return (
+<<<<<<< HEAD
     <div style={{ flex: '1' }}>
       <Paper 
         elevation={1} 
@@ -45,6 +50,27 @@ const ClientTable = ({ clients, delClient, editClient }) => {
                   fontSize: '1rem',
                   py: 2
                 }}>
+=======
+    <div className="client-table-container">
+      <Paper 
+        elevation={1} 
+        className="client-table-paper"
+      >
+        <TableContainer>
+          <Table className="client-table">
+            <TableHead>
+              <TableRow className="client-table-head">
+                <TableCell className="client-table-header-cell">
+                  Имя
+                </TableCell>
+                <TableCell className="client-table-header-cell">
+                  Фамилия
+                </TableCell>
+                <TableCell className="client-table-header-cell">
+                  Телефон
+                </TableCell>
+                <TableCell className="client-table-header-cell">
+>>>>>>> master
                   Действия
                 </TableCell>
               </TableRow>
@@ -53,6 +79,7 @@ const ClientTable = ({ clients, delClient, editClient }) => {
               {clients.map((client) => (
                 <TableRow 
                   key={client.id}
+<<<<<<< HEAD
                   sx={{ 
                     '&:nth-of-type(odd)': { backgroundColor: 'action.hover' },
                     '&:last-child td, &:last-child th': { border: 0 },
@@ -80,11 +107,26 @@ const ClientTable = ({ clients, delClient, editClient }) => {
                     {client.phone}
                   </TableCell>
                   <TableCell sx={{ py: 1.5 }}>
+=======
+                  className="client-table-body-row"
+                >
+                  <TableCell className="client-table-cell-bold">
+                    {client.name}
+                  </TableCell>
+                  <TableCell className="client-table-cell">
+                    {client.surname}
+                  </TableCell>
+                  <TableCell className="client-table-cell">
+                    {client.phone}
+                  </TableCell>
+                  <TableCell className="client-table-cell">
+>>>>>>> master
                     <Button 
                       variant="contained" 
                       color="error"
                       size="small"
                       onClick={() => delClient(client.id)}
+<<<<<<< HEAD
                       sx={{
                         borderRadius: 1,
                         textTransform: 'none',
@@ -97,6 +139,9 @@ const ClientTable = ({ clients, delClient, editClient }) => {
                         },
                         transition: 'all 0.2s'
                       }}
+=======
+                      className="delete-button"
+>>>>>>> master
                     >
                       Удалить
                     </Button>
@@ -108,7 +153,12 @@ const ClientTable = ({ clients, delClient, editClient }) => {
         </TableContainer>
       </Paper>
     </div>
+<<<<<<< HEAD
   )
                   };
+=======
+  );
+};
+>>>>>>> master
 
 export default ClientTable;

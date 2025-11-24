@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .App {
   text-align: center;
 }
@@ -37,3 +38,171 @@
   }
 }
 
+=======
+/* Стили для навигационного меню */
+.navbar {
+  background-color: #2c3e50;
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.nav-logo {
+  color: white;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #34495e;
+}
+
+.nav-link.active {
+  background-color: #3498db;
+}
+
+/* Стили для основного контента */
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Стили для страницы таблицы */
+.table-page {
+  width: 100%;
+}
+
+.table-page h1 {
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Контейнер для формы и таблицы */
+.client-table-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  width: 100%;
+}
+
+/* Стили для формы */
+.form-container {
+  flex: 0 0 400px; /* Фиксированная ширина формы */
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+}
+
+.form {
+  width: 100%;
+}
+
+/* Стили для таблицы */
+.table-container {
+  flex: 1; /* Таблица занимает всё оставшееся пространство */
+  min-width: 0; /* Для правильного сжатия */
+}
+
+.client-table-paper {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Стили для других страниц */
+.home-page,
+.products-page,
+.about-page {
+  animation: fadeIn 0.5s ease-in;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.home-page h1,
+.products-page h1,
+.about-page h1 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.home-page p,
+.products-page p,
+.about-page p {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .nav-menu {
+    gap: 1rem;
+  }
+  
+  .main-content {
+    padding: 1rem;
+  }
+
+  .client-table-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-container {
+    flex: none;
+    width: 100%;
+  }
+
+  .table-container {
+    width: 100%;
+  }
+}
+>>>>>>> master
