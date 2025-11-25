@@ -43,6 +43,7 @@ function App() {
   const TablePage = () => (
     <Box sx={{ width: '100%' }}>
       <h1>Управление клиентами</h1>
+      <div class='table-container'>
       <Box 
         sx={{
           display: 'flex',
@@ -51,37 +52,29 @@ function App() {
           width: '100%'
         }}
       >
+      <div class='form-container'>
         {/* Форма слева */}
-        <Box 
-          sx={{
-            flex: '0 0 400px',
-            padding: '20px',
-            borderRadius: '12px',
-            height: 'fit-content'
-          }}
-        >
+        <Box>
           <Form 
             handleSubmit={addClient} 
             inClient={{name: "", surname: "", phone: ""}}
           />
         </Box>
-        
+      </div>
+
+        <div class='client-table-container'>
         {/* Таблица справа */}
         <Box sx={{ flex: 1, minWidth: 0 }}>
-          <Paper 
-            sx={{
-              borderRadius: '16px',
-              overflow: 'hidden',
-              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)'
-            }}
-          >
+          <Paper>
             <Table 
               clients={clients}
               delClient={delCli}
             />
           </Paper>
         </Box>
+        </div>
       </Box>
+      </div> 
     </Box>
   );
 
