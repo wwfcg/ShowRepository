@@ -64,31 +64,40 @@
   transform: scale(0.98);
 }
 
-.submit-button-editing {
-  background-color: #28a745;
+/* Темная тема для формы */
+body.dark-theme .form {
+  background-color: #1e1e1e;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-.submit-button-editing:hover {
-  background-color: #218838;
+body.dark-theme .form-title {
+  color: #ffffff;
 }
 
-.cancel-button {
-  width: 100%;
-  padding: 14px 20px;
-  background-color: #6c757d;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+body.dark-theme .form-label {
+  color: #e0e0e0;
 }
 
-.cancel-button:hover {
-  background-color: #545b62;
+body.dark-theme .form-input {
+  background-color: #2d2d2d;
+  border: 2px solid #404040;
+  color: #ffffff;
 }
 
-.cancel-button:active {
-  transform: scale(0.98);
+body.dark-theme .form-input:focus {
+  border-color: #90caf9;
+  background-color: #333333;
+}
+
+body.dark-theme .form-input::placeholder {
+  color: #888888;
+}
+
+body.dark-theme .submit-button {
+  background-color: #1976d2;
+  box-shadow: 0 2px 5px rgba(25, 118, 210, 0.3);
+}
+
+body.dark-theme .submit-button:hover {
+  background-color: #1565c0;
 }

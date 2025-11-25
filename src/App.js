@@ -11,7 +11,13 @@ const initialClients = ClientAPI.all();
 
 function App() {
   const [clients, setClients] = useState(initialClients);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
+  const toggleTheme = () => {
+    setIsDarkTheme(!isDarkTheme);
+    document.body.classList.toggle('dark-theme');
+  };
+  
   const addClient = (client) => {
     const newClient = ClientAPI.add(client);
     setClients([...clients, newClient]);
@@ -107,6 +113,13 @@ function App() {
                 <Link to="/about" className="nav-link">О нас</Link>
               </li>
             </ul>
+            {/* Обычная кнопка переключения темы */}
+            <button 
+              className={`theme-toggle-btn ${isDarkTheme ? 'dark' : 'light'}`}
+              onClick={toggleTheme}
+            >
+              {isDarkTheme ? '☀️' : '🌙'}
+            </button>
           </div>
         </nav>
 

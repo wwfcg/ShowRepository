@@ -62,7 +62,7 @@
 .nav-menu {
   display: flex;
   list-style: none;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   gap: 2rem;
 }
@@ -220,5 +220,100 @@
 
   .table-container {
     width: 100%;
+  }
+}
+
+/* Стили для кнопки переключения темы */
+.theme-toggle-btn {
+  margin-left: auto;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle-btn:active {
+  transform: scale(0.95);
+}
+
+.theme-toggle-btn.light {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle-btn.dark {
+  background: rgba(255, 193, 7, 0.2);
+}
+
+/* Стили для темной темы в стиле Material-UI */
+body.dark-theme {
+  background-color: #121212;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+body.dark-theme .navbar {
+  background-color: #1e1e1e;
+  border-bottom: 1px solid #333;
+}
+
+body.dark-theme .main-content {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body.dark-theme .home-page h1,
+body.dark-theme .products-page h1,
+body.dark-theme .about-page h1,
+body.dark-theme .table-page h1 {
+  color: #ffffff;
+}
+
+body.dark-theme .home-page p,
+body.dark-theme .products-page p,
+body.dark-theme .about-page p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Стили для Material-UI компонентов в темной теме */
+body.dark-theme .MuiPaper-root {
+  background-color: #1e1e1e !important;
+  color: #ffffff !important;
+  border: 1px solid #333 !important;
+}
+
+body.dark-theme .MuiTableCell-root {
+  color: #ffffff !important;
+  border-bottom: 1px solid #333 !important;
+}
+
+body.dark-theme .MuiTableHead-root {
+  background-color: #2d2d2d !important;
+}
+
+body.dark-theme .MuiButton-root {
+  color: #ffffff !important;
+}
+
+/* Адаптивность для кнопки темы */
+@media (max-width: 768px) {
+  .theme-toggle-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
   }
 }

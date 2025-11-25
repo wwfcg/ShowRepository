@@ -66,3 +66,78 @@
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
   transform: translateY(-1px);
 }
+
+/* Темная тема для таблицы */
+body.dark-theme .client-table-paper {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+}
+
+body.dark-theme .client-table-head {
+  background-color: #1976d2;
+}
+
+body.dark-theme .client-table-header-cell {
+  color: white;
+  border-bottom: 1px solid #333;
+}
+
+body.dark-theme .client-table-body-row {
+  color: #e0e0e0;
+  border-bottom: 1px solid #333;
+}
+
+body.dark-theme .client-table-body-row:nth-of-type(odd) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-theme .client-table-body-row:nth-of-type(even) {
+  background-color: #1e1e1e;
+}
+
+body.dark-theme .client-table-body-row:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-theme .client-table-cell {
+  color: #e0e0e0;
+  border-bottom: 1px solid #333;
+}
+
+body.dark-theme .client-table-cell-bold {
+  color: #ffffff;
+  font-weight: 500;
+  border-bottom: 1px solid #333;
+}
+
+body.dark-theme .delete-button {
+  background-color: #d32f2f;
+  color: white;
+}
+
+body.dark-theme .delete-button:hover {
+  background-color: #c62828;
+  box-shadow: 0px 2px 6px rgba(211, 47, 47, 0.3);
+}
+
+/* Дополнительные стили для лучшей читаемости в темной теме */
+body.dark-theme .client-table-container {
+  color: #e0e0e0;
+}
+
+body.dark-theme .MuiTable-root {
+  background-color: #1e1e1e;
+}
+
+body.dark-theme .MuiTableCell-root {
+  color: #e0e0e0;
+  border-bottom: 1px solid #333;
+}
+
+body.dark-theme .MuiTableHead-root {
+  background-color: #1976d2;
+}
+
+body.dark-theme .MuiTableRow-root:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
