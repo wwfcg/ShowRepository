@@ -1,0 +1,81 @@
+.client-table-container {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+}
+
+/* Paper теперь красит MUI (через ThemeProvider). Мы не задаём background вручную */
+.client-table-paper {
+  border-radius: 16px;
+  flex:1;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow) !important;
+}
+
+.client-table {
+  min-width: 300px;
+}
+
+/* НЕ задаём фон шапки жёстко (иначе в dark будет "чужой" цвет).
+   Если хочешь оставить "синий брендовый" в обеих темах — скажи, сделаю через токен. */
+.client-table-head {
+  background-color: transparent;
+}
+
+/* Наследуем цвет от MUI темы */
+.client-table-header-cell {
+  color: inherit !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  padding: 16px !important;
+}
+
+/* Строки: оставляем hover/striped аккуратно, но через tokens */
+.client-table-body-row {
+  transition: background-color 0.2s;
+}
+
+/* Полосатость через переменные.
+   Важно: MUI в dark сам даёт хорошие цвета, но это добавляет лёгкий striped-эффект. */
+.client-table-body-row:nth-of-type(odd) {
+  background-color: color-mix(in srgb, var(--text) 6%, transparent);
+}
+
+.client-table-body-row:hover {
+  background-color: color-mix(in srgb, var(--text) 10%, transparent);
+}
+
+.client-table-body-row:last-child td,
+.client-table-body-row:last-child th {
+  border: 0;
+}
+
+/* Явно говорим: цвет берём из темы MUI, не фиксируем */
+.client-table-cell,
+.client-table-cell-bold {
+  color: inherit !important;
+  font-size: 0.95rem !important;
+  padding: 12px !important;
+}
+
+.client-table-cell-bold {
+  font-weight: 600 !important;
+}
+
+/* Кнопка удаления — MUI её красит по color="error".
+   Оставляем только форму/анимацию. */
+.delete-button {
+  border-radius: 10px !important;
+  text-transform: none !important;
+  font-weight: 700 !important;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2) !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.delete-button:hover {
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3) !important;
+  transform: translateY(-1px);
+}

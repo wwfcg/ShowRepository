@@ -1,45 +1,64 @@
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --muted-text: #7f8c8d;
+
+  --navbar-bg: #2c3e50;
+  --navbar-text: #ffffff;
+  --nav-hover-bg: #34495e;
+  --nav-active-bg: #3498db;
+
+  --surface: #ffffff;
+
+  /* единый border token (используют Form.css и Table.css) */
+  --border: rgba(0, 0, 0, 0.12);
+
+  /* input tokens (использует Form.css) */
+  --input-bg: #ffffff;
+  --input-text: #111111;
+  --input-border: rgba(0, 0, 0, 0.18);
+  --input-placeholder: rgba(0, 0, 0, 0.45);
+
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+html[data-theme="dark"] {
+  --bg: #121212;
+  --text: #ffffff;
+  --muted-text: rgba(255, 255, 255, 0.7);
+
+  --navbar-bg: #1e1e1e;
+  --navbar-text: #ffffff;
+  --nav-hover-bg: #2a2a2a;
+  --nav-active-bg: #3b82f6;
+
+  --surface: #1e1e1e;
+
+  --border: #333;
+
+  --input-bg: #1e1e1e;
+  --input-text: #ffffff;
+  --input-border: #3a3a3a;
+  --input-placeholder: rgba(255, 255, 255, 0.45);
+
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* Глобальный фон/текст */
+html,
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 /* Стили для навигационного меню */
 .navbar {
-  background-color: #2c3e50;
+  background-color: var(--navbar-bg);
   padding: 1rem 0;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
@@ -54,7 +73,7 @@
 }
 
 .nav-logo {
-  color: white;
+  color: var(--navbar-text);
   margin: 0;
   font-size: 1.5rem;
 }
@@ -68,7 +87,7 @@
 }
 
 .nav-link {
-  color: white;
+  color: var(--navbar-text);
   text-decoration: none;
   padding: 0.5rem 1rem;
   border-radius: 4px;
@@ -76,55 +95,31 @@
 }
 
 .nav-link:hover {
-  background-color: #34495e;
+  background-color: var(--nav-hover-bg);
 }
 
 .nav-link.active {
-  background-color: #3498db;
+  background-color: var(--nav-active-bg);
 }
 
-/* Стили для основного контента */
+/* Основной контент */
 .main-content {
   margin: 0 auto;
   padding: 2rem;
 }
 
-/* Стили для страницы таблицы */
+/* Заголовки/тексты страниц — без жёстких цветов */
 .table-page {
   width: 100%;
 }
 
 .table-page h1 {
-  color: #2c3e50;
+  color: var(--text);
   margin-bottom: 2rem;
   text-align: center;
 }
 
-/* Контейнер для формы и таблицы */
-.client-table-container {
-  display: flex;
-  align-items: flex-start;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  gap: 2rem;
-  width: 100%;
-}
-
-/* Стили для формы */
-.form-container {
-  flex: 0 0 400px; /* Фиксированная ширина формы */
-  height: 100%;
-  margin-right: 20px;
-  border-radius: 12px;
-  height: fit-content;
-}
-
-.form {
-  width: 100%;
-}
-
-/* Стили для таблицы */
+/* Контейнеры таблицы/формы: только layout */
 .table-container {
   display: flex;
   align-items: flex-start;
@@ -132,33 +127,37 @@
   width: 100%;
 }
 
-.client-table-paper {
+.form-container {
+  flex: 0 0 400px;
+  height: fit-content;
+  border-radius: 12px;
+}
+
+.client-table-container {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
   width: 100%;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
 }
 
-.table-page {
-    width: 100%;
-}
-
+/* Доп. utility (если используешь где-то) */
 .flex-container {
-    display: flex;
-    align-items: flex-start;
-    gap: 2rem;
-    width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  width: 100%;
 }
 
 .table-wrapper {
-    flex: 1;
-    min-width: 0;
+  flex: 1;
+  min-width: 0;
 }
 
 /* Стили для других страниц */
 .home-page,
 .products-page,
-.about-page {
+.about-page,
+.table-page {
   animation: fadeIn 0.5s ease-in;
   text-align: center;
   padding: 2rem 0;
@@ -167,14 +166,14 @@
 .home-page h1,
 .products-page h1,
 .about-page h1 {
-  color: #2c3e50;
+  color: var(--text);
   margin-bottom: 1rem;
 }
 
 .home-page p,
 .products-page p,
 .about-page p {
-  color: #7f8c8d;
+  color: var(--muted-text);
   font-size: 1.1rem;
   line-height: 1.6;
   max-width: 600px;
@@ -199,16 +198,16 @@
     flex-direction: column;
     gap: 1rem;
   }
-  
+
   .nav-menu {
     gap: 1rem;
   }
-  
+
   .main-content {
     padding: 1rem;
   }
 
-  .client-table-container {
+  .table-container {
     flex-direction: column;
     gap: 1rem;
   }
@@ -217,99 +216,37 @@
     flex: none;
     width: 100%;
   }
-
-  .table-container {
-    width: 100%;
-  }
 }
 
-/* Стили для кнопки переключения темы */
+/* Кнопка переключения темы */
 .theme-toggle-btn {
   margin-left: auto;
   width: 48px;
   height: 48px;
-  border: none;
+  border: 1px solid var(--border);
   border-radius: 50%;
   cursor: pointer;
   font-size: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.2s ease, background-color 0.2s ease;
   background: rgba(255, 255, 255, 0.1);
-  color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: var(--navbar-text);
+}
+
+html[data-theme="dark"] .theme-toggle-btn {
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .theme-toggle-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
   transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .theme-toggle-btn:active {
   transform: scale(0.95);
 }
 
-.theme-toggle-btn.light {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.theme-toggle-btn.dark {
-  background: rgba(255, 193, 7, 0.2);
-}
-
-/* Стили для темной темы в стиле Material-UI */
-body.dark-theme {
-  background-color: #121212;
-  color: #ffffff;
-  transition: all 0.3s ease;
-}
-
-body.dark-theme .navbar {
-  background-color: #1e1e1e;
-  border-bottom: 1px solid #333;
-}
-
-body.dark-theme .main-content {
-  background-color: #121212;
-  color: #ffffff;
-}
-
-body.dark-theme .home-page h1,
-body.dark-theme .products-page h1,
-body.dark-theme .about-page h1,
-body.dark-theme .table-page h1 {
-  color: #ffffff;
-}
-
-body.dark-theme .home-page p,
-body.dark-theme .products-page p,
-body.dark-theme .about-page p {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* Стили для Material-UI компонентов в темной теме */
-body.dark-theme .MuiPaper-root {
-  background-color: #1e1e1e !important;
-  color: #ffffff !important;
-  border: 1px solid #333 !important;
-}
-
-body.dark-theme .MuiTableCell-root {
-  color: #ffffff !important;
-  border-bottom: 1px solid #333 !important;
-}
-
-body.dark-theme .MuiTableHead-root {
-  background-color: #2d2d2d !important;
-}
-
-body.dark-theme .MuiButton-root {
-  color: #ffffff !important;
-}
-
-/* Адаптивность для кнопки темы */
 @media (max-width: 768px) {
   .theme-toggle-btn {
     width: 40px;

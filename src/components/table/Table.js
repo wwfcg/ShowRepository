@@ -1,14 +1,16 @@
 import { Table, TableContainer, Button, TableBody, TableRow, TableHead, Paper, TableCell } from "@mui/material";
-import React from "react";
 import "./Table.css";
+import { useSelector } from "react-redux";
 
 const ClientTable = ({ clients, delClient, editClient }) => {
+  const { isAuthenticated, user } = useSelector((s) => s.auth);
+  const isAdmin = isAuthenticated && user?.role === "admin";
 
   return (
-    
+
     <div className="client-table-container">
-      <Paper 
-        elevation={1} 
+      <Paper
+        elevation={1}
         className="client-table-paper"
       >
         <TableContainer>
@@ -31,9 +33,9 @@ const ClientTable = ({ clients, delClient, editClient }) => {
             </TableHead>
             <TableBody>
               {clients.map((client) => (
-                <TableRow 
+                <TableRow
                   key={client.id}
-                   className="client-table-body-row"
+                  className="client-table-body-row"
                 >
                   <TableCell className="client-table-cell-bold">
                     {client.name}
@@ -45,15 +47,14 @@ const ClientTable = ({ clients, delClient, editClient }) => {
                     {client.phone}
                   </TableCell>
                   <TableCell className="client-table-cell">
-                    <Button 
-                      variant="contained" 
-                      color="error"
-                      size="small"
-                      onClick={() => delClient(client.id)}
-                      className="delete-button"
-                    >
-                      Удалить
-                    </Button>
+                    {isAdmin ? (
+                      <Button
+                        onClick={() => delClient(client.id)} className="delete-button">
+                        Удалить
+                      </Button>
+                    ) : (
+                      <span style={{ opacity: 0.7 }}>—</span>
+                    )}
                   </TableCell>
                 </TableRow>
               ))}
@@ -63,6 +64,6 @@ const ClientTable = ({ clients, delClient, editClient }) => {
       </Paper>
     </div>
   )
-                  };
+};
 
 export default ClientTable;

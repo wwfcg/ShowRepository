@@ -1,141 +1,102 @@
-import './App.css';
-import ClientAPI from "./api/services";
-import Table from "./Table";
-import Form from "./Form";
-import { useState } from "react";
+import "./App.css";
+import Home from "./components/home/home.js";
+import Products from "./components/products/products.js";
+import TablePage from "./components/tablePage/tablePage.js";
+import About from "./components/about/about.js";
+import { useState, useEffect, useMemo } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { Box, Paper } from '@mui/material';
 
-
-const initialClients = ClientAPI.all();
+import { useDispatch, useSelector } from "react-redux";
+import { toggleTheme } from "./store/themeSlice";
+import { logout } from "./store/authSlice";
+import AuthModal from "./components/auth/AuthModal";
+import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
 
 function App() {
-  const [clients, setClients] = useState(initialClients);
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const dispatch = useDispatch();
 
-  const toggleTheme = () => {
-    setIsDarkTheme(!isDarkTheme);
-    document.body.classList.toggle('dark-theme');
-  };
-  
-  const addClient = (client) => {
-    const newClient = ClientAPI.add(client);
-    setClients([...clients, newClient]);
-  }
+  const themeMode = useSelector((state) => state.theme.mode);
+  const { isAuthenticated, user } = useSelector((s) => s.auth);
 
-  const delCli = (id) => {
-    ClientAPI.delete(id);
-    setClients([...ClientAPI.all()]);
-  };
+  const [authOpen, setAuthOpen] = useState(false);
 
-  // Компонент для главной страницы
-  const Home = () => (
-    <div className="home-page">
-      <h1>Добро пожаловать в систему управления клиентами</h1>
-      <p>Используйте навигационное меню для перехода между разделами</p>
-    </div>
-  );
+  // CSS тема (для твоих обычных стилей)
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", themeMode);
+  }, [themeMode]);
 
-  // Компонент для страницы товаров
-  const Products = () => (
-    <div className="products-page">
-      <h1>Наши товары</h1>
-      <p>Здесь будет список товаров</p>
-      {/* Добавьте ваш компонент для товаров */}
-    </div>
-  );
-
-  // Компонент для страницы таблицы
-  const TablePage = () => (
-    <Box sx={{ width: '100%' }}>
-      <h1>Управление клиентами</h1>
-      <div class='table-container'>
-      <Box 
-        sx={{
-          display: 'flex',
-          alignItems: 'flex-start',
-          gap: '2rem',
-          width: '100%'
-        }}
-      >
-      <div class='form-container'>
-        {/* Форма слева */}
-        <Box>
-          <Form 
-            handleSubmit={addClient} 
-            inClient={{name: "", surname: "", phone: ""}}
-          />
-        </Box>
-      </div>
-
-        <div class='client-table-container'>
-        {/* Таблица справа */}
-        <Box sx={{ flex: 1, minWidth: 0 }}>
-          <Paper>
-            <Table 
-              clients={clients}
-              delClient={delCli}
-            />
-          </Paper>
-        </Box>
-        </div>
-      </Box>
-      </div> 
-    </Box>
-  );
-
-  // Компонент для страницы "О нас"
-  const About = () => (
-    <div className="about-page">
-      <h1>О нашей компании</h1>
-      <p>Мы занимаемся управлением клиентской базой с 2024 года.</p>
-    </div>
+  const muiTheme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: themeMode,
+        },
+        shape: { borderRadius: 16 },
+      }),
+    [themeMode]
   );
 
   return (
-    <Router>
-      <div className="App">
-        {/* Навигационное меню */}
-        <nav className="navbar">
-          <div className="nav-container">
-            <h1 className="nav-logo">Client Manager</h1>
-            <ul className="nav-menu">
-              <li className="nav-item">
-                <Link to="/" className="nav-link">Главная</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/products" className="nav-link">Товары</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/table" className="nav-link">Таблица клиентов</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/about" className="nav-link">О нас</Link>
-              </li>
-            </ul>
-            {/* Обычная кнопка переключения темы */}
-            <button 
-              className={`theme-toggle-btn ${isDarkTheme ? 'dark' : 'light'}`}
-              onClick={toggleTheme}
-            >
-              {isDarkTheme ? '☀️' : '🌙'}
-            </button>
-          </div>
-        </nav>
+    <ThemeProvider theme={muiTheme}>
+      <CssBaseline />
+      <Router>
+        <div className="App">
+          <nav className="navbar">
+            <div className="nav-container">
+              <h1 className="nav-logo">Client Manager</h1>
 
-        {/* Основной контент */}
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/table" element={<TablePage />} />
-            <Route path="/about" element={<About />} />
-          </Routes>
-        </main>
-      </div>
-    </Router>
+              <ul className="nav-menu">
+                <li className="nav-item">
+                  <Link to="/" className="nav-link">Главная</Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/products" className="nav-link">Товары</Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/table" className="nav-link">Таблица клиентов</Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/about" className="nav-link">О нас</Link>
+                </li>
+              </ul>
+
+              <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+                {isAuthenticated ? (
+                  <>
+                    <span style={{ color: "var(--navbar-text)", fontSize: 14, opacity: 0.9 }}>
+                      {user?.role === "admin" ? "Admin" : "User"}: {user?.email}
+                    </span>
+                    <button className="theme-toggle-btn" onClick={() => dispatch(logout())}>
+                      Выйти
+                    </button>
+                  </>
+                ) : (
+                  <button className="theme-toggle-btn" onClick={() => setAuthOpen(true)}>
+                    Войти
+                  </button>
+                )}
+
+                <button className="theme-toggle-btn" onClick={() => dispatch(toggleTheme())}>
+                  {themeMode === "dark" ? "☀️" : "🌙"}
+                </button>
+              </div>
+            </div>
+          </nav>
+
+          <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} />
+
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/table" element={<TablePage />} />
+              <Route path="/about" element={<About />} />
+            </Routes>
+          </main>
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }
 
 export default App;
-

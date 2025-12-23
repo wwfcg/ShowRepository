@@ -1,4 +1,5 @@
 const ClientAPI = { 
+  
   all: () => {
     const clients = JSON.parse(localStorage.getItem('clients') || '[]');
     return clients;
@@ -22,5 +23,7 @@ const ClientAPI = {
     return clients.length < initialLength; 
   },
   };
+
+  
 
 export default ClientAPI;
